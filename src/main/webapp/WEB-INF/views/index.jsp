@@ -14,6 +14,7 @@
     </head>
     <body>
         <h1><a href="${pageContext.request.contextPath}/login">Login to Secured Area</a></h1>
+         <h1><a href="${pageContext.request.contextPath}/admin/courses">Secured Area</a></h1>
          <h1>Courses</h1>
         <ul>
             <c:forEach var="course" items="${courses}">

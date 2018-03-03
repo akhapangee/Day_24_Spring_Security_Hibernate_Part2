@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AdminController {
     
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
     public String index(){
-        return "Secured Area";
+        return "/admin/course/index";
     }
     
 }
