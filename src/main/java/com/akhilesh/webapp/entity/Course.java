@@ -44,8 +44,8 @@ public class Course implements Serializable {
     private Date addedDate;
     @Column(name = "status")
     private Boolean status;
-    @OneToMany(mappedBy = "course")
-    private List<Enquiry> enquiryList;
+//    @OneToMany(mappedBy = "course")
+//    private List<Enquiry> enquiryList;
 
     public Course() {
     }
@@ -112,13 +112,13 @@ public class Course implements Serializable {
         this.status = status;
     }
 
-    public List<Enquiry> getEnquiryList() {
-        return enquiryList;
-    }
-
-    public void setEnquiryList(List<Enquiry> enquiryList) {
-        this.enquiryList = enquiryList;
-    }
+//    public List<Enquiry> getEnquiryList() {
+//        return enquiryList;
+//    }
+//
+//    public void setEnquiryList(List<Enquiry> enquiryList) {
+//        this.enquiryList = enquiryList;
+//    }
 
     @Override
     public int hashCode() {
