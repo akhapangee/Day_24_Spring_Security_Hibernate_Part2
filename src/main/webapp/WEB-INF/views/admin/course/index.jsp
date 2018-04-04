@@ -35,15 +35,39 @@
                     <th>Status</th>
                 </tr>
             </table>
-
+            <div id="course-dialog" >
+                <form>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" id="course-name" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Code</label>
+                        <input type="text" name="code" id="course-code"  class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Fees</label>
+                        <input type="text" name="fees" id="course-fees"  class="form-control"/>
+                    </div>
+                </form>
+            </div>
         </div>
         <script>
             $(document).ready(function () {
-                $.getJSON("${pageContext.request.contextPath}/api/courses",
+                $.getJSON("${SITE_URL}/api/courses",
                         function (data) {
                             var $courseTable = ("#course-table");
                             $.each(data, function (i, c) {
-                                var $tr = $("<tr/>");
+                                var $tr = $("<tr data-id='"+c.id+"'/>");
+                                $tr.on('click', function(){
+                                   $id = $(this).attr('data-id');
+                                   $.getJSON('${SITE_URL}/api/courses/'+$id,function (data){
+//                                       console.log(data);
+                                       $("#course-name").val(data.name);
+                                       $("#course-code").val(data.code);
+                                       $("#course-fees").val(data.fees);
+                                   });
+                                });
                                 $("<td/>")
                                         .append($("<input type='checkbox' name='course' class='checkbox'>"))
                                         .appendTo($tr);
@@ -51,16 +75,24 @@
                                 $("<td/>").html(c.name).appendTo($tr);
                                 $("<td/>").html(c.fees).appendTo($tr);
                                 $("<td/>").html(c.status).appendTo($tr);
+                                $("<td/>").append($("<a href='#' onclick='deleteCourse("+c.id+")' />").html("Delete")).appendTo($tr);
                                 $tr.appendTo($courseTable);
                             });
                         });
-                  $("#select-all").on('click',function(){
-                      var $selected = $(this).is(":checked");
-                      console.log($selected);
-                      $(".checkbox").prop('checked',$selected);
-                  });      
-                        
+                $("#select-all").on('click', function () {
+                    var $selected = $(this).is(":checked");
+                    console.log($selected);
+                    $(".checkbox").prop('checked', $selected);
+                });
+
             });
+            function deleteCourse(id){
+                if(confirm('Are you sure to delete')){
+                    var $tr = $("tr[data-id="+id+"]");
+                    $tr.slideUp(1000);
+                    console.log($tr);
+                }
+            }
 
         </script>
     </body>

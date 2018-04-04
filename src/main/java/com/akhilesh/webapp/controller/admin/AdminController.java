@@ -3,7 +3,6 @@ package com.akhilesh.webapp.controller.admin;
 import com.akhilesh.webapp.data.ResponseData;
 import com.akhilesh.webapp.entity.Course;
 import com.akhilesh.webapp.service.CourseService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
